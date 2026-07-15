@@ -1,0 +1,6 @@
+datastore = {
+    "patients": {},
+    "doctors": {},
+    "appointments": {}
+
+}
