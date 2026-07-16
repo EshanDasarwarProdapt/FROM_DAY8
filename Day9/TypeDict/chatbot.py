@@ -12,7 +12,9 @@ def chatbots(inputs:Sequence[InputData]):
 conversation = (
     "Hi",
     "Show me nearby restrtaunt",
-    b'\x89PNG',
+    b'\xff\xd8\xff',
     "Explain this image"
 )
+
+#b'\xff\xd8\xff - 3bytes
 chatbots(conversation)
