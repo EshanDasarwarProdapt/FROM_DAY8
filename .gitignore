@@ -10,4 +10,6 @@ __pycache__/
 .vscode/
 
 # Environment variables
-.env
+.envnode_modules/
+.postman/
+node_modules/
