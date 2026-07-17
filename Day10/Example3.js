@@ -1,5 +1,6 @@
 let marks = [85, 42, 76, 91, 38, 67, 55, 29, 80, 49];
 
+
 let pass = 0;
 let fail = 0;
 
@@ -9,10 +10,10 @@ let min = marks[0];
 for (let i = 0; i < marks.length; i++) {
 
     if (marks[i] >= 50) {
-        console.log("Student " + (i + 1) + "- Pass");
+        console.log("Student " + (i + 1) + " - " + marks[i] + "- Pass");
         pass++;
     } else {
-        console.log("Student " + (i + 1) + "- Fail");
+        console.log("Student " + (i + 1) + " - " + marks[i] + "- Fail");
         fail++;
     }
 
