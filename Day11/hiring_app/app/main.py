@@ -1,43 +1,43 @@
 # pyrefly: ignore [missing-import]
+from pathlib import Path
+import sys
+
 from fastapi import FastAPI
+
+if __package__ in {None, ""}:
+    sys.path.append(str(Path(__file__).resolve().parents[1]))
+    from app.models.job import job
+    from app.schema.job_schema import JobCreate
+else:
+    from .models.job import job
+    from .schema.job_schema import JobCreate
 
 app = FastAPI()
 
+
 @app.get("/")
 def home():
-    return {"message": "Welcome to FastAPI"}  
+    job_instance = job(
+        title="Python Dev",
+        description="Develop FastAPI Application",
+        salary=750000,
+        company="ABC Technologies",
+    )
 
-@app.post("/jobs") 
-def create_jobs():
-    return{"message": "Job Created"}
+    job_schema = JobCreate(
+        title=job_instance.title,
+        description=job_instance.description,
+        salary=job_instance.salary,
+        company=job_instance.company,
+    )
 
-@app.get("/jobs")
-def get_jobs():
-    return{"message": "List of Jobs"}
+    return {
+        "Model": job_instance.__dict__,
+        "Schema": job_schema.model_dump(),
+    }
 
-@app.put("/jobs")
-def update_job():
-    return{"message": "Job Updated"}
 
-@app.patch("/jobs")
-def update_salary():
-    return{"message":"Salary Updated"}
+if __name__ == "__main__":
+    import uvicorn
 
-@app.delete("/jobs")
-def delete_job():
-    return {"message": "Job Deleted"}
-
-@app.get("/jobs/{job_id}")
-def get_job_path(job_id:int):
-    return{"job_id": job_id}
-
-@app.get("/jobsQuery")
-def get_jobs_query(location:str):
-    return{"location":location}
-
-@app.get("/jobsLocation")
-def get_jobs_query(location:str, experience:int):
-    return{
-        "location":location,
-        "experience": experience
-        }
+    uvicorn.run("app.main:app", host="127.0.0.1", port=8000, reload=True)
