@@ -26,3 +26,18 @@ def update_salary():
 @app.delete("/jobs")
 def delete_job():
     return {"message": "Job Deleted"}
+
+@app.get("/jobs/{job_id}")
+def get_job_path(job_id:int):
+    return{"job_id": job_id}
+
+@app.get("/jobsQuery")
+def get_jobs_query(location:str):
+    return{"location":location}
+
+@app.get("/jobsLocation")
+def get_jobs_query(location:str, experience:int):
+    return{
+        "location":location,
+        "experience": experience
+        }
