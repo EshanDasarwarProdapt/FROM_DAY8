@@ -13,3 +13,4 @@ __pycache__/
 .envnode_modules/
 .postman/
 node_modules/
+.env
